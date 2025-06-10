@@ -36,7 +36,7 @@ export default function TaskPage() {
         <source src="/bg.mp4" type="video/mp4" />
       </video>
       <div className={styles.overlay}>
-        <h1 className={styles.title}>Your SnapTasks</h1>
+        <h1 className={styles.title}>Enter your task here</h1>
         <div className={styles.inputContainer}>
           <input
             type="text"
