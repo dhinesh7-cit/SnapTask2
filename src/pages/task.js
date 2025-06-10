@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/TaskPage.module.css';
 
 export default function TaskPage() {
+  const router = useRouter();
   const [task, setTask] = useState('');
   const [taskList, setTaskList] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -35,8 +37,14 @@ export default function TaskPage() {
       <video autoPlay muted loop className={styles.video}>
         <source src="/bg.mp4" type="video/mp4" />
       </video>
+
       <div className={styles.overlay}>
-        <h1 className={styles.title}>Enter your task here</h1>
+        <button onClick={() => router.push('/')} className={styles.homeBtn}>
+          ⬅️ Back to Home
+        </button>
+
+        <h1 className={styles.title}>Your SnapTasks</h1>
+
         <div className={styles.inputContainer}>
           <input
             type="text"
@@ -48,6 +56,7 @@ export default function TaskPage() {
           />
           <button onClick={handleAddTask} className={styles.addBtn}>+</button>
         </div>
+
         <ul className={styles.taskList}>
           {taskList.map((t, idx) => (
             <li
