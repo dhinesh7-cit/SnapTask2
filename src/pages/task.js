@@ -31,32 +31,35 @@ export default function TaskPage() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.title}>SnapTask Dashboard</h1>
-      <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Enter your task..."
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          onKeyDown={handleKeyPress}
-          className={styles.input}
-        />
-        <button onClick={handleAddTask} className={styles.addBtn}>
-          +
-        </button>
+    <div className={styles.container}>
+      <video autoPlay muted loop className={styles.video}>
+        <source src="/bg.mp4" type="video/mp4" />
+      </video>
+      <div className={styles.overlay}>
+        <h1 className={styles.title}>Your SnapTasks</h1>
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="Enter your task..."
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            onKeyDown={handleKeyPress}
+            className={styles.input}
+          />
+          <button onClick={handleAddTask} className={styles.addBtn}>+</button>
+        </div>
+        <ul className={styles.taskList}>
+          {taskList.map((t, idx) => (
+            <li
+              key={idx}
+              className={`${styles.taskItem} ${t.completed ? styles.completed : ''}`}
+              onClick={() => toggleTask(idx)}
+            >
+              {t.text}
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className={styles.taskList}>
-        {taskList.map((t, idx) => (
-          <li
-            key={idx}
-            className={`${styles.taskItem} ${t.completed ? styles.completed : ''}`}
-            onClick={() => toggleTask(idx)}
-          >
-            {t.text}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
