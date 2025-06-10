@@ -21,6 +21,17 @@ export default function TaskPage() {
     setTaskList([...taskList, { text: task, completed: false }]);
     setTask('');
   };
+  useEffect(() => {
+    console.log('%c🚀 SnapTask mounted! Ready to roll...', 'color: #7b61ff; font-weight: bold;');
+    
+    const title = document.querySelector(`.${styles.title}`);
+    if (title) {
+      title.classList.add(styles.animate);
+      setTimeout(() => {
+        title.classList.remove(styles.animate);
+      }, 600);
+    }
+  }, []);
 
   const toggleTask = (index) => {
     const updated = [...taskList];
